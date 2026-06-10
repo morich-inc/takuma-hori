@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>堀 琢磨 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>堀 琢磨 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. エン株式会社（旧：エン・ジャパン株式会社）</a>
+  <a href="#k2">2. オープンワーク株式会社</a>
+  <a href="#k3">3. エムスリーキャリア株式会社</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">人材紹介事業責任者（役員クラス）</span><span class="badge badge-blue">東証プライム市場上場</span></div>
+  <div class="co-name">エン株式会社（旧：エン・ジャパン株式会社）</div>
+  <div class="co-url"><a href="https://corp.en-japan.com/profile/" target="_blank">https://corp.en-japan.com/profile/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>設立</th><td>2000年</td></tr><tr><th>代表取締役社長</th><td>越智 通勝氏</td></tr><tr><th>上場区分</th><td>東証プライム市場上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>参考にですが・・2025年8月エンワールド・ジャパン株式会社の代表取締役にご就任されたこの方は弊社を通じて決まった方です。お人柄も抜群に素敵な方です！</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「人と企業のより良い出会いを支援する」というミッションのもと、インターネットを活用した求人・転職支援サービスを展開するリーディングカンパニーです。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「人と企業のより良い出会いを支援する」というミッションのもと、インターネットを活用した求人・転職支援サービスを展開するリーディングカンパニーです。2000年の創業以来、業界を牽引し続け、現在では【エン転職】をはじめとする多彩なプラットフォームを運営。特に、企業の採用成功だけでなく、「入社後の活躍」にも焦点を当てた独自の支援が特徴です。</p><p>創業者であり代表取締役社長である越智通勝氏は、独自の経営哲学「CSA経営」を提唱・実践されていて、その思想の深さが注目されています。越智氏の40年にわたる経営経験をまとめた書籍『エン・ジャパンの飛躍を支えたCSA経営』では、エン・ジャパンが有望な人材がいない中で創業し、日本で最も支持される転職サイトの一つにまで成長した秘訣が記されています。</p><p>核心となるのが「CSA（Career Selectability＝キャリア自己選択能力）経営」という考え方です。これは、「縁あって入社した社員が、どこへ行っても活躍できる能力を身につけられるように支援する」という思想に基づいています。このCSA経営を「7つの考え方」「20の能力」「4つの環境」という方程式で解説し、社員を企業の成長を牽引する人材へと育て上げる具体的な方法を、エン・ジャパンの実例を交えて紹介しています。</p><p>越智氏が社員一人ひとりの人間成長に真摯に向き合い、それが結果として企業の持続的な成長につながるという強い信念を持った経営者であることがうかがえます。</p><p>ぜひご応募の判断材料として、こちらの書籍をお読みいただきたいです。<br>※【CSA経営】に感心していただける方が大前提となります。（https://amzn.asia/d/b50VGa3）</p><p><strong>代表取締役社長　越智 通勝氏</strong><br>1951年、兵庫県芦屋市生まれ。​甲南大学経済学部卒業後、メーカー勤務を経て、大手教育コンサルティング会社に転職し、組織開発や教育研修の企画・提案業務に従事。​1983年に株式会社日本ブレーンセンターを設立し、求人広告代理業を開始。​1995年には就職・転職情報サイト「縁」エンプロイメントネットの運営を開始し、2000年に同事業部をエン・ジャパン株式会社として独立させ、代表取締役社長に就任。​2001年6月、設立からわずか1年6カ月で上場を果たすなど、同社の飛躍的な成長を牽引してきました。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 人材紹介事業責任者（役員クラス）</div>
+          <div class="job-preview">『ミドルの転職』『AMBI』を有する人材紹介事業の立て直しを担う事業責任者</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>同社では『ミドルの転職』『AMBI』というスカウトサイトを有しており、両方合わせて人材紹介手数料800億円を生み出していますが、自社のエージェント部門ではその1割程度というのが現状です。</p><p>創業者である越智氏としては、リクルート社やパーソル社を追うのではなく、JAC社のように質を追求し人材業界の中で一目置かれるエージェント事業にしていきたいお考えです。数百名を擁するエージェント部門を立て直し、質の高いエージェントに育てていける方を求めています。</p><p>★越智氏との面談前に、著書『エン・ジャパンの飛躍を支えたＣＳＡ経営』のご一読をお願いいたします。<br>https://csa-association.com/</p><p><strong>要件</strong></p><ul><li><span class='tag tag-must'>MUST</span> ミドル～ハイレイヤーをターゲットにした人材紹介事業における、豊富な事業責任者経験（数百名以上の組織を束ねていた人）</li><li><span class='tag tag-must'>MUST</span> 仕組みづくりのうまい人</li><li><span class='tag tag-must'>MUST</span> エンの経営理念に共感できる方<br>└売上・利益・時価総額を追う会社ではなく、質を重視し業界の中で一目置かれる会社を目指す</li></ul><p><strong>年収例</strong></p><ul><li>事業部長クラス　1000万～1500万円</li><li>役員クラス　1500万～3000万円（年俸制）</li></ul><p><strong>勤務時間</strong><br>9：00〜18：00</p><p><strong>休日・休暇</strong><br>完全週休2日制（土日）<br>年間休日：121日<br>休暇：GW、夏季、年末年始、慶弔、産前・産後、育児、介護<br>※年に4回、全社行事のため出社（リモート）する土曜日があります。出社した場合は時間外手当として固定残業代より換算いたします。<br>※その他休暇：祝日、有給、生理、看護</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">💰 年収1500万〜3000万円</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.en-japan.com/profile/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">経営人材候補</span><span class="badge badge-blue">東証グロース市場上場</span></div>
+  <div class="co-name">オープンワーク株式会社</div>
+  <div class="co-url"><a href="https://www.openwork.co.jp/" target="_blank">https://www.openwork.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>設立</th><td>2007年</td></tr><tr><th>従業員数</th><td>約170名</td></tr><tr><th>代表取締役社長</th><td>大澤 陽樹氏</td></tr><tr><th>上場区分</th><td>東証グロース市場上場（2022年12月）</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>&quot;口コミサイト運営会社&quot;ではなく、&quot;キャリアインフラ&quot;への進化フェーズ<br>OpenWorkは、社員口コミメディアの枠を超え、ダイレクトリクルーティング、人材紹介、AIキャリア支援、組織開発へと事業領域を拡大中。2,000万件超の口コミデータと転職潜在層DBを武器に、「人と企業の最適配置」を実現する次世代キャリアプラットフォーム構想を推進。既存アセットを活用した高収益モデルと新規事業投資が両立する成長局面です。</li><li>&quot;完成された大企業&quot;ではなく、&quot;経営レイヤーを創る側&quot;の環境<br>従業員170名規模ながら、部長職は全社で2名というフラット組織。事業成長に対してミドルマネジメントが不足しており、今後ジョインするハイクラス人材が組織の中核を担う前提のフェーズ。役職は入社時固定ではなく、成果ベースで最短1〜3ヶ月で登用判断される実力主義カルチャー。将来的なCxO・グループ会社経営などへのアップサイドも豊富。</li><li>&quot;単なるM&A推進&quot;ではなく、&quot;経営人材を量産する&quot;ロールアップ戦略<br>OpenWorkは年1社ペースでM&Aを推進し、人材紹介会社のロールアップ戦略を加速。単なる買収ではなく、PMI後に経営人材を送り込み、既存事業を再成長させる構想が特徴。CSO室を中心に、M&A実行からPMI、グループ会社経営まで一気通貫で担う体制を構築中。経営・事業責任者としてキャリアを広げたい人材にとって、極めて大きな裁量機会のある環境。</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">オープンワーク株式会社は、「働きがいをすべての人へ」をミッションに、日本の労働市場へ透明性をもたらすHR Tech企業です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>オープンワーク株式会社は、「働きがいをすべての人へ」をミッションに、日本の労働市場へ透明性をもたらすHR Tech企業です。</p><p>2007年に創業者・増井慎二郎氏が立ち上げた「Vorkers」を起点に、2019年に「OpenWork」へリブランディング。現在は国内最大級となる1,300万件超の社員クチコミ・評価スコアを蓄積し、個人が主体的に企業を選ぶためのキャリアプラットフォームへ成長しています。</p><p>2022年12月には東証グロース市場へ上場。近年は「OpenWorkリクルーティング」が利用企業1,000社を突破し、学生ユーザー数も過去最多の32万人へ到達するなど、採用支援領域での存在感も拡大。さらに、クチコミデータを資本市場分析や組織課題解決に活用するオルタナティブデータ事業も前期比134％成長を実現しています。</p><p>AIと専門スタッフによる二重審査でクチコミ品質を担保するユーザーファーストの姿勢を強みに、LINE、博報堂、マッキンゼー、Amazonなど多様な出身者が集うフラットな組織文化のもと、日本の&quot;働きがい&quot;そのものを変革する挑戦を続ける企業です。</p><p><strong>代表取締役社長　大澤 陽樹氏</strong><br>東京大学大学院卒業後、リンクアンドモチベーションへ入社。2019年にオープンワーク株式会社へ参画し、2020年に代表取締役社長へ就任。2022年12月、同社の東証グロース市場上場を牽引。現在は「働きがいをすべての人へ」をミッションに、OpenWorkの事業拡大と組織成長を推進。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 経営人材候補</div>
+          <div class="job-preview">事業成長やM&A、グループ会社展開を見据えた将来的な経営・事業推進を担う人材</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>今後の事業成長やM&A、グループ会社展開などを見据え、将来的に経営・事業推進を担っていただく可能性のある経営人材候補を募集します。</p><p>現時点で特定の役職やミッションを明確に限定するものではなく、ご経験や志向性、事業状況に応じて、既存事業の成長支援、新規事業の推進、M&A後のPMI、グループ会社の経営支援など、幅広いテーマに関わっていただく想定。</p><p>まずは面接の中で、ご本人の強みや適性を踏まえながら担っていただく領域をすり合わせ、将来的に事業責任者、子会社経営、経営企画、事業開発、PMI推進など、経営人材としてご活躍いただく予定です。</p><p><strong>求めるスキル</strong></p><ul><li><span class='tag tag-must'>MUST</span> 事業責任者、事業企画、経営企画、事業開発、営業責任者、子会社経営、PMI推進など、いずれかの領域における実務経験</li><li><span class='tag tag-must'>MUST</span> 既存事業の成長、収益改善、組織マネジメント、業務プロセス改善などに関わった経験</li><li><span class='tag tag-must'>MUST</span> PL責任、KPI設計、組織運営、採用・育成、事業戦略立案など、経営に近い視点で事業を推進した経験</li><li><span class='tag tag-must'>MUST</span> M&A後の事業成長やグループ会社経営、新規事業推進などに関心を持ち、未整備な領域でも自ら動ける推進力</li><li><span class='tag tag-want'>WANT</span> 人材領域、HRTech、SaaS、インターネットサービス、プラットフォームビジネスなどの知見があれば尚可</li></ul><p><strong>求める人物像</strong></p><ul><li>明確に完成されたポジションよりも、事業フェーズや組織課題に応じて自ら役割を広げていける方</li><li>将来的に経営や事業責任を担うことに関心を持ちつつ、まずは事業課題の解決に向き合える方</li><li>既存の肩書きや役職にこだわりすぎず、成果を通じて役割やポジションを築いていける方</li><li>経営視点と現場感の両方を持ち、必要に応じて自ら手を動かしながら周囲を巻き込める方</li></ul><p><strong>勤務時間</strong><br>10:00～19:00<br>所定労働時間：1日8時間<br>月間フレックスタイム制（コアタイム10：00～16：00）<br>週5日・8時間勤務就業想定<br>・中途グループメンバーの平均残業時間（35時間程度）<br>・月40時間までに抑えなければならない、22時までにPCを落とさないといけないルール</p><p><strong>休日・休暇</strong><br>完全週休2日制、祝日<br>年次有給休暇（初年度12日）、フリーバカンス（年1回、連続5日間の休暇）、年末年始休暇、忌引休暇、結婚休暇、配偶者出産休暇、リフレッシュ休暇（勤続5年で連続10日間の休暇）<br>※有給は1時間単位でも取得可能。自身の業務を調整すれば、前日でも取得可能。理由開示の必要なし。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span><span class="pill">💰 年収1000万〜2000万円</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.openwork.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">事業責任者候補</span><span class="badge badge-blue">非上場</span></div>
+  <div class="co-name">エムスリーキャリア株式会社</div>
+  <div class="co-url"><a href="https://www.m3career.com/" target="_blank">https://www.m3career.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>設立</th><td>2009年</td></tr><tr><th>従業員数</th><td>1,101名（2025年10月末時点）</td></tr><tr><th>代表取締役</th><td>沼倉 敏樹氏</td></tr><tr><th>本社住所</th><td>〒105-0001 東京都港区虎ノ門4-1-28 虎ノ門タワーズオフィス</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li><strong>豊富なアセットを活用できる事業開発環境！</strong>：エムスリー株式会社（51％）と株式会社エス・エム・エス（49％）による安定したジョイントベンチャーですが、親会社からの過度な干渉はなく自由度の高い環境で任せてもらえます。豊富なアセットを活用して、「材料がいっぱいある中で絵を描く」ことが得意な方にぴったりなフェーズです。</li><li><strong>リアルビジネスへの強み</strong>：親会社のエムスリーと比較して、「営業を伴うビジネス」や「人を伴うビジネス」といったリアルビジネスに強みを持っています。プロダクト作りだけでなく、営業組織を牽引できる方は特に活躍できるフィールドです。</li><li><strong>社員の9割以上が異業界出身！若手が躍動する組織！</strong>：医療業界や人材業界が未経験の方でも大歓迎です！社員の90%近くが20代・30代で構成されており、「誰が言ったか」ではなく「何を言ったか」を重視するフラットでスピード感のある組織です。ロジカルでありながらも、ノリが良く活気にあふれた風土があります。</li><li><strong>柔軟な働き方を後押し！</strong>：週1～3日の在宅勤務（遠隔地でのフルリモート事例あり）や時差出勤、短時間勤務に対応しています。さらに個人の事情やスキルアップ目的での副業も可能です。「健康経営優良法人2026（ホワイト500）」にも2年連続で認定されており、働きやすさも抜群です。</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2009年の設立以来、「イキイキと働く医療従事者を一人でも増やし、医療に貢献する」というミッションを掲げているエムスリーキャリア。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2009年の設立以来、「イキイキと働く医療従事者を一人でも増やし、医療に貢献する」というミッションを掲げているエムスリーキャリア。日本の医療インフラが直面する「人材不足・偏在」「過重労働」「医療機関の経営難」といった深刻な課題に対し、100年先の未来を見据えて事業を展開しています。</p><p>当社の圧倒的な優位性は、日本の医師の約9割にあたる34万人以上の医師が登録する会員データベースを有している点です。この強固なアセットを武器に、医療人材マッチングを核としながら、医療機関の採用・経営コンサルティング、一般企業向けの健康経営支援、さらには医師の働き方改革支援と多彩なソリューションを提供しています。</p><p>実績として、産業医紹介サービスにおいては医師登録実績8年連続No.1を獲得し、訪日外国人向けオンライン診療サービスでは世界43か国の利用実績を突破しています。従業員数も1,101名（2025年10月末時点）へと拡大し、医療人材のリーディングカンパニーとして確かな成長とイノベーションを続けています！</p><p><strong>代表取締役 沼倉 敏樹</strong><br>北海道大樹町生まれ。帯広柏葉高校、中京大学体育学部を卒業後、公立高校の教員、アパレル商社のブランドマネージャーを経て、青山学院大学大学院国際マネジメント研究科（MBA）に入学。大学院修了後にエムスリーキャリアへ入社。現場のコンサルタント、医師キャリア事業部長を経て2021年4月から代表取締役。趣味はスキー。年間滑走日数は30日以上。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 事業責任者候補</div>
+          <div class="job-preview">医療×HRTechで世界を変える事業責任者として、豊富なアセットを活用した事業推進を担う</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>《 医療 × HRTech で世界を変える 》</strong></p><p>エムスリーキャリアは、m3.comの会員基盤・オペレーションエクセレンスを強みに創業以来業績を伸ばし、コロナ禍の市場の変化を乗り越え、新たな事業・サービスを次々と生み出してきました。そして、現在はほぼ全てのサービスが業界No.1となっています。今、医療業界は過去にない大きな変革期を迎えています。この掛け算で世界に革新を起こせるのは、唯一エムスリーキャリアだけだと自負しています。</p><p><strong>「圧倒的No.1の人材サービス × HRTech」の組み合わせでしか医療課題は解決できない</strong></p><p>ホワイトカラーの採用と異なり、医療人材採用においては信頼できるデータが世の中に出回っておらず、確からしいノウハウやナレッジを知る術もありません。そのため医療機関は、いつ、どのくらいの確率で人材確保できるのか、見通しが立てられないという厳しい状況下にいます。医師・薬剤師の確保 ≒ 収益の確保という構造である医療経営において、&quot;圧倒的なデータ量を根拠にした採用予測に基づき、働き方の多様化に対応できる全方位の採用支援&quot;ができるのは、医療人材で圧倒的No.1、かつその強みを活かしたHRTechの掛け算ができる当社のみだと考えています。</p><p><strong>潤沢なリソースがあるから、事業責任者としてより大きな絵を描ける</strong></p><p>事業運営に関わる際にぶつかりやすい壁は、アイデアがあってもリソースが足りずに実現できないという点ではないでしょうか。リソースが小さいと、そのぶん描ける構想や戦略の範囲が限られてしまいますが、エムスリーキャリアであれば資金や情報・人材など各リソースが十分にある状態で事業開発・推進に着手できます。</p><p><strong>志をともにする仲間が大勢いるから、成功するまで走り続けられる</strong></p><p>エムスリーキャリアには様々なバックグラウンドを持つ優秀な人材が多く集まっています。壁打ち相手がおらず、事業のアイデアや施策が自身の経験知見の範囲内にとどまってしまうといった心配はありません。携わるプロジェクトがうまくいっている時もそうでない時も相談・議論できる仲間がたくさんいるので、目標達成のために前向きにチャレンジし続けられる環境です。</p><p><strong>募集背景</strong></p><p>エムスリーキャリアは、約40のグループで構成されています。各グループにゼネラルマネージャー（部長）、サービス責任者をそれぞれ配置していますが、現状は複数部門を兼任していることも多く、ミッション達成・事業成長のためには組織の中核を担うマネジメント人材がまだまだ必要です。そこで、サービス責任者としての経験知見をお持ちの方にジョインいただき、当社の成長を牽引してもらえることを期待しています。</p><p><strong>職務内容</strong></p><p>入社後の具体的な役割は、経験スキル・適性・事業課題の優先度などを勘案し決定いたします。入社直後は、既存事業におけるサービス企画・業務改善・オペレーション設計などを担当しながら、サービスや組織への理解を深めていただきます。その後、事業責任者として活躍していただくことを期待しています。</p><p><strong>アサイン例：</strong></p><ul><li><strong>既存事業の拡大、派生サービスの開発</strong><br>┗粗利1億円以上、メンバー10名以上の責任者として、担当する事業の拡大をお任せします<br>┗課題整理や改善プロジェクトの推進はもちろん、派生サービスの開発も担当いただきます</li><li><strong>新規事業開発</strong><br>┗市場調査・ビジネスモデル設計・テスト実施と、事業を創ることを担当いただきます<br>┗ゼロベースで事業立ち上げ、小さく立ち上がっているサービスの拡大するなど、様々なフェーズがあります</li></ul><p><strong>応募資格（必須）</strong></p><ul><li><span class='tag tag-must'>MUST</span> サービス責任者として、戦略策定/PL管理/営業/組織マネジメントに携わった経験が2年以上ある方</li></ul><p><strong>応募資格（歓迎）</strong></p><ul><li><span class='tag tag-want'>WANT</span> 定量データの扱いが得意な方、データドリブンでの改善経験がある方</li><li><span class='tag tag-want'>WANT</span> 論理的思考能力があり、定量・定性の両側面から建設的な思考ができる方</li><li><span class='tag tag-want'>WANT</span> 事業（サービス）の立ち上げやグロースさせた経験がある方</li><li><span class='tag tag-want'>WANT</span> 当事者意識を持ち、主体的に考え行動できる方</li><li><span class='tag tag-want'>WANT</span> 成長意欲、学習意欲が高い方</li><li><span class='tag tag-want'>WANT</span> 部署の垣根を超えてコミュニケーションをとり、業務を推進できる方</li><li><span class='tag tag-want'>WANT</span> 限られた情報をもとに、自ら一次情報を収集しにいったり組織に入り込んでいける方</li></ul><p><strong>勤務時間</strong><br>9時30分～18時30分（休憩1時間）<br>※始業時刻は8時00分～9時30分で調整可能（終業時刻は始業から9時間後）<br>※多くの社員が9時30分に勤務開始しています。<br>※育児・介護・私傷病・転居等で出社に制限がある方で、対象条件を満たす場合は在宅勤務も可能です。</p><p><strong>休日・休暇</strong><br>週休2日制（土日祝）<br>年次有給休暇（1時間単位で取得可）<br>夏季休暇（3日）<br>年末年始休暇（12/28～1/3の7日間）<br>特別休暇<br>結婚休暇（5日）<br>弔慰休暇<br>産前産後休暇<br>育児・介護休業、他<br>※年間休日125日（FY24実績）</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 在宅勤務制度</span><span class="pill">✅ 副業可</span><span class="pill">💰 年収800万〜1300万円</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.m3career.com/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが堀 琢磨 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
